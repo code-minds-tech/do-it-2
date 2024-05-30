@@ -2,14 +2,16 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import ThemeContext from '../Context/ThemeContext';
 
-const SectionHeader = ({ title }) => {
+const SectionHeader = ({ navigation, title, page }) => {
     const theme = React.useContext(ThemeContext);
-
+    const handleSubcategoryPress = (page) => {
+        navigation.navigate(page);
+    };
     return (
         <View style={styles.sectionHeader}>
             <Text style={[styles.sectionTitle, { color: theme.text }]}>{title}</Text>
             <TouchableOpacity>
-                <Text style={[styles.seeAllText, { color: theme.primary }]}>See All</Text>
+                <Text onPress={() => handleSubcategoryPress(page)} style={[styles.seeAllText, { color: theme.button }]}>See All</Text>
             </TouchableOpacity>
         </View>
     );

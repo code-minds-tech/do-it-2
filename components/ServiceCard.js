@@ -12,7 +12,7 @@ const ServiceCard = () => {
                 I need an expert business consultant to help me develop my new project and advise me to grow my market audien...
             </Text>
             <TouchableOpacity style={styles.applyButton}>
-                <Text style={[styles.applyButtonText, { color: theme.primary }]}>Apply</Text>
+                <Text style={[styles.applyButtonText, { color: theme.button }]}>Apply</Text>
             </TouchableOpacity>
         </View>
     );
@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
         width: 300,
         padding: 15,
         marginHorizontal: 10,
-        borderWidth: 1,
         borderRadius: 10,
     },
     serviceTitle: {

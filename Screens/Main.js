@@ -22,22 +22,23 @@ const Main = ({ navigation, setRequestServiceModalVisible }) => {
                 </TouchableOpacity>
                 <ProfileSection />
                 <Statistics />
-                <View style={styles.providersHeader}>
+                <View style={styles.headers}>
                     <RequestedServices />
                     <Button title="See All" onPress={() => navigation.navigate('RequestedServices')} />
                 </View>
 
                 <TouchableOpacity
-                    style={[styles.requestServiceButton, { backgroundColor: theme.primary }]}
+                    style={[styles.requestServiceButton, { backgroundColor: theme.button }]}
                     onPress={() => setRequestServiceModalVisible(true)}
                 >
-                    <Text style={styles.requestServiceButtonText}>Request Service</Text>
+                    <Ionicons name="add-circle" size={24} color="black" />
+                    <Text style={[styles.requestServiceButtonText, { color: theme.buttonText }]}>Request Service</Text>
                 </TouchableOpacity>
-                <View style={styles.categoriesHeader}>
+                <View style={styles.headers}>
                     <Categories />
                     <Button title="See All" onPress={() => navigation.navigate('Categories')} />
                 </View>
-                <View style={styles.providersHeader}>
+                <View style={styles.headers}>
                     <TopProviders />
                     <Button title="See All" onPress={() => navigation.navigate('TopProviders')} />
                 </View>
@@ -50,19 +51,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    categoriesHeader: {
+    headers: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingHorizontal: 15,
-        marginBottom: 10,
-    },
-    providersHeader: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingHorizontal: 15,
-        marginBottom: 10,
+        alignItems: 'baseline',
+        paddingHorizontal: 10,
+        marginBottom: 5,
     },
     requestServiceButton: {
         marginHorizontal: 15,
@@ -70,6 +64,9 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
         borderRadius: 25,
         alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        padding: 75,
     },
     requestServiceButtonText: {
         color: '#fff',

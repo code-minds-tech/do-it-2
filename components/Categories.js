@@ -8,9 +8,15 @@ const Categories = () => {
     const theme = React.useContext(ThemeContext);
 
     return (
-        <View style={[styles.section, { backgroundColor: theme.card }]}>
+        <View style={[styles.section, { backgroundColor: theme.background }]}>
             <SectionHeader title="Categories" />
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.horizontalScroll}>
+                <CategoryCardHome title="Business" />
+                <CategoryCardHome title="Marketing" />
+                <CategoryCardHome title="Software" />
+                <CategoryCardHome title="Business" />
+                <CategoryCardHome title="Marketing" />
+                <CategoryCardHome title="Software" />
                 <CategoryCardHome title="Business" />
                 <CategoryCardHome title="Marketing" />
                 <CategoryCardHome title="Software" />
@@ -21,7 +27,7 @@ const Categories = () => {
 
 const styles = StyleSheet.create({
     section: {
-        marginBottom: 10,
+        marginBottom: 5,
     },
     horizontalScroll: {
         paddingHorizontal: 15,

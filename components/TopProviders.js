@@ -8,7 +8,7 @@ const TopProviders = () => {
     const theme = React.useContext(ThemeContext);
 
     return (
-        <View style={[styles.section, { backgroundColor: theme.card }]}>
+        <View style={[styles.section, { backgroundColor: theme.background }]}>
             <SectionHeader title="Top Providers" />
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.horizontalScroll}>
                 <ProviderCard name="Alex Thompson" profession="Design" />

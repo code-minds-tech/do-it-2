@@ -8,9 +8,11 @@ const Statistics = () => {
     return (
         <View style={[styles.statistics, { backgroundColor: theme.card }]}>
             <StatisticItem label="Impressions" value="1,016" />
+            <View style={[styles.verticleLine, { backgroundColor: theme.background }]}></View>
             <StatisticItem label="Orders" value="12" />
+            <View style={[styles.verticleLine, { backgroundColor: theme.background }]}></View>
             <StatisticItem label="Conversion Rate" value="14%" />
-        </View>
+        </View >
     );
 };
 
@@ -30,7 +32,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         padding: 15,
+        marginHorizontal: 15,
         marginBottom: 10,
+        borderRadius: 10,
     },
     statisticItem: {
         alignItems: 'center',
@@ -41,6 +45,11 @@ const styles = StyleSheet.create({
     },
     statisticLabel: {
         color: '#666',
+    },
+    verticleLine: {
+        height: '100%',
+        width: 1,
+
     },
 });
 

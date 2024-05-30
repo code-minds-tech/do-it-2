@@ -7,11 +7,11 @@ const Header = () => {
     const theme = React.useContext(ThemeContext);
 
     return (
-        <View style={[styles.header, { backgroundColor: theme.card }]}>
+        <View elevation={5} style={[styles.header, { backgroundColor: theme.background }]}>
             <Image source={{ uri: 'https://via.placeholder.com/50' }} style={styles.logo} />
             <View style={styles.headerIcons}>
-                <Ionicons name="search" size={25} color={theme.text} />
-                <Ionicons name="notifications-outline" size={25} color={theme.text} style={styles.icon} />
+                <Ionicons name="search-circle" size={28} color={theme.button} />
+                <Ionicons name="notifications-outline" size={25} color={theme.button} style={styles.icon} />
             </View>
         </View>
     );
@@ -23,6 +23,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: 15,
+
+
     },
     logo: {
         width: 50,

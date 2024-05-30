@@ -8,7 +8,9 @@ const CategoryCard = ({ title }) => {
 
     return (
         <View style={[styles.categoryCard, { backgroundColor: theme.card, borderColor: theme.border }]}>
-            <Ionicons name="briefcase-outline" size={30} color={theme.text} />
+            <View style={[styles.iconCard, { backgroundColor: theme.iconCard }]}>
+                <Ionicons name="briefcase-outline" size={60} color={theme.text} />
+            </View>
             <Text style={[styles.categoryTitle, { color: theme.text }]}>{title}</Text>
         </View>
     );
@@ -17,14 +19,20 @@ const CategoryCard = ({ title }) => {
 const styles = StyleSheet.create({
     categoryCard: {
         alignItems: 'center',
-        marginHorizontal: 10,
+        marginHorizontal: 5,
+        padding: 5,
+        borderRadius: 10,
+    },
+    iconCard: {
+        alignItems: 'center',
+        marginHorizontal: 5,
         padding: 10,
         borderRadius: 10,
-        borderWidth: 1,
     },
     categoryTitle: {
-        marginTop: 5,
-        fontSize: 14,
+        marginTop: 10,
+        marginBottom: 2,
+        fontSize: 16,
     },
 });
 

@@ -8,8 +8,8 @@ const RequestedServices = () => {
     const theme = React.useContext(ThemeContext);
 
     return (
-        <View style={[styles.section, { backgroundColor: theme.card }]}>
-            <SectionHeader title="Requested Services" />
+        <View style={[styles.section, { backgroundColor: theme.background }]}>
+            <SectionHeader title="Requested Services" page="RequestedServices" />
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.horizontalScroll}>
                 <ServiceCard />
                 <ServiceCard />
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     horizontalScroll: {
-        paddingHorizontal: 15,
+        paddingHorizontal: 2,
     },
 });
 

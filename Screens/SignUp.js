@@ -1,17 +1,21 @@
 // Screens/Signup.js
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ThemeContext from '../Context/ThemeContext';
+import AuthContext from '../Context/AuthContext';
+
 
 
 const SignupScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
+    const [fullName, setFullName] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const { signup } = useContext(AuthContext);
     const theme = React.useContext(ThemeContext);
 
     const handleSignup = () => {
-        const success = signup(email, password);
+        const success = signup(email, password, fullName, phoneNumber);
         if (success) {
             alert('Account created successfully');
         } else {

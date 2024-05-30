@@ -86,6 +86,11 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 16,
     },
+    skipButton: {
+        flex: 1,
+        flexDirection: 'row',
+        padding: 10,
+    },
 });
 
 export default OnboardingScreen;

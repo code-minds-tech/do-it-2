@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import { Ionicons } from '@expo/vector-icons';
 import ThemeContext from '../Context/ThemeContext';
 import RequestedServiceItem from '../components/RequestedServiceItem';
+import { color } from 'react-native-elements/dist/helpers';
 
 const RequestedServices = ({ navigation }) => {
     const theme = React.useContext(ThemeContext);
     const [search, setSearch] = useState('');
     const [filter, setFilter] = useState('All');
+    const [selectedDate, setSelectedDate] = useState('');
+    const [selectedLocation, setSelectedLocation] = useState('');
+    const [selectedServiceType, setSelectedServiceType] = useState('');
 
     const services = [
         { id: '1', name: 'Adam Thomas', category: 'Business, Marketing', description: 'Business consulting is a professional service...', type: 'Hybrid', date: 'Jan 21 2024', location: 'Alexandria, Egypt' },
@@ -21,27 +26,66 @@ const RequestedServices = ({ navigation }) => {
 
     return (
         <View style={[styles.container, { backgroundColor: theme.background }]}>
-            <View style={styles.header}>
-                <Ionicons name="arrow-back" size={24} color={theme.text} onPress={() => navigation.goBack()} />
-                <Text style={[styles.headerTitle, { color: theme.text }]}>Requested Services</Text>
+            <View elevation={5} style={styles.header}>
+                <View style={styles.headerContent}>
+                    <Ionicons name="arrow-back" size={24} color={theme.text} onPress={() => navigation.goBack()} />
+                    <Text style={[styles.headerTitle, { color: theme.text }]}>Requested Services</Text>
+                </View>
+                <View style={styles.headerContent}>
+                    <Ionicons name="chatbubble-ellipses" size={24} color={theme.button} />
+                    <Ionicons name="notifications" size={24} color={theme.button} />
+                </View>
             </View>
             <View style={[styles.searchBar, { backgroundColor: theme.cardBackground }]}>
-                <Ionicons name="search" size={20} color={theme.secondaryText} />
+                <Ionicons name="search" size={20} color={theme.primary} />
                 <TextInput
-                    style={[styles.searchInput, { color: theme.text }]}
+                    style={[styles.searchInput, { color: theme.primary }]}
                     placeholder="Search"
-                    placeholderTextColor={theme.secondaryText}
+                    placeholderTextColor={theme.primary}
                     value={search}
                     onChangeText={setSearch}
                 />
             </View>
+            <View style={styles.ddCont}>
+                <View style={styles.dropdownContainer}>
+                    <Picker
+                        selectedValue={selectedDate}
+                        style={styles.picker}
+                        onValueChange={(itemValue, itemIndex) => setSelectedDate(itemValue)}
+                    >
+                        <Picker.Item label="Date" value="" style={{ color: theme.primary }} />
+
+                    </Picker>
+                </View>
+                <View style={styles.dropdownContainer}>
+                    <Picker
+                        selectedValue={selectedLocation}
+                        style={styles.picker}
+                        onValueChange={(itemValue, itemIndex) => setSelectedLocation(itemValue)}
+                    >
+                        <Picker.Item label="Location" value="" style={{ color: theme.primary }} />
+
+                    </Picker>
+                </View>
+                <View style={styles.dropdownContainer}>
+                    <Picker
+                        selectedValue={selectedServiceType}
+                        style={styles.picker}
+                        onValueChange={(itemValue, itemIndex) => setSelectedServiceType(itemValue)}
+                    >
+                        <Picker.Item label="Service Type" value="" style={{ color: theme.primary }} />
+
+                    </Picker>
+                </View>
+            </View>
+
             <View style={styles.filters}>
                 <FlatList
                     data={['All', 'Business', 'Marketing', 'Finance', 'Consulting', 'Children care']}
                     horizontal
                     renderItem={({ item }) => (
                         <TouchableOpacity onPress={() => setFilter(item)} style={[styles.filterButton, filter === item && styles.filterButtonActive]}>
-                            <Text style={[styles.filterButtonText, { color: filter === item ? theme.primary : theme.text }]}>{item}</Text>
+                            <Text style={[styles.filterButtonText, { color: filter === item ? theme.text : theme.primary }]}>{item}</Text>
                         </TouchableOpacity>
                     )}
                     keyExtractor={item => item}
@@ -70,8 +114,13 @@ const styles = StyleSheet.create({
     },
     header: {
         flexDirection: 'row',
-        alignItems: 'center',
+
         marginBottom: 10,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    headerContent: {
+        flexDirection: 'row',
     },
     headerTitle: {
         fontSize: 20,
@@ -81,9 +130,11 @@ const styles = StyleSheet.create({
     searchBar: {
         flexDirection: 'row',
         alignItems: 'center',
-        borderRadius: 10,
+        borderRadius: 15,
+        borderWidth: 1,
+        borderColor: '#2EC8FE',
         padding: 10,
-        marginBottom: 10,
+        marginTop: 12
     },
     searchInput: {
         marginLeft: 10,
@@ -97,17 +148,33 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         paddingVertical: 5,
         borderRadius: 20,
+        borderWidth: 1,
+        borderColor: '#2EC8FE',
         marginHorizontal: 5,
-        backgroundColor: '#E0E0E0',
+
     },
     filterButtonActive: {
-        backgroundColor: '#1E90FF',
+        backgroundColor: '#2EC8FE',
     },
     filterButtonText: {
         fontSize: 14,
     },
     serviceList: {
         paddingBottom: 10,
+    },
+    ddCont: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        padding: 10,
+    },
+    dropdownContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        padding: 5,
+    },
+    picker: {
+        width: '70%',
+        color: '#2EC8FE'
     },
 });
 

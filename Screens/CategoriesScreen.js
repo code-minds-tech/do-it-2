@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, FlatList, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ThemeContext from '../Context/ThemeContext';
-import CategoryCard from '../components/categoryCard';
+import CategoryCard from '../components/CategoryCard';
 
 const initialCategories = [
     { id: '1', name: 'Business', services: 12, subcategories: ['Management', 'Finance', 'Accounting', 'Sales', 'Human Resources'] },

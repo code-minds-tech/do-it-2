@@ -1,5 +1,6 @@
 // App.js
 import React from 'react';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -53,7 +54,7 @@ const MainApp = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
+        tabBarIcon: ({ size }) => {
           let iconName;
           if (route.name === 'Home') {
             iconName = 'home-outline';
@@ -64,17 +65,40 @@ const MainApp = () => {
           } else if (route.name === 'Favorite') {
             iconName = 'heart';
           }
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Ionicons name={iconName} size={size} color={theme.button} />;
         },
-        tabBarActiveTintColor: theme.primary,
+        tabBarActiveTintColor: theme.buttonText,
         tabBarInactiveTintColor: 'gray',
-        tabBarStyle: { backgroundColor: theme.background },
+        tabBarStyle: {},
+        tabBarLabel: ({ focused }) => {
+          if (focused) {
+            return <Text style={[theme.buttonText, { padding: 5 }]}>{route.name}</Text>;
+          } else {
+            return null;
+          }
+        },
+        tabBarStyle: {
+          height: 70,
+          backgroundColor: theme.background,
+          borderRadius: 25,
+          marginBottom: 15,
+        },
+        tabBarItemStyle: ({ focused }) => ({
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: 10,
+          margin: 5,
+          borderRadius: 25,
+          backgroundColor: focused ? theme.button : '#333',
+
+        }),
       })}
     >
       <Tab.Screen name="Home" component={HomeStack} options={{ headerShown: false }} />
       <Tab.Screen name="Messages" component={MessagesStack} options={{ headerShown: false }} />
-      <Tab.Screen name="Favorite" component={FavoriteStack} />
-      <Tab.Screen name="Profile" component={ProfileStack} />
+      <Tab.Screen name="Favorite" component={FavoriteStack} options={{ headerShown: false }} />
+      <Tab.Screen name="Profile" component={ProfileStack} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 };

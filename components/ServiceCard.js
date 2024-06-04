@@ -7,10 +7,12 @@ const ServiceCard = () => {
 
     return (
         <View style={[styles.serviceCard, { backgroundColor: theme.card, borderColor: theme.border }]}>
-            <Text style={[styles.serviceTitle, { color: theme.text }]}>Business Consulting</Text>
-            <Text style={[styles.serviceDescription, { color: theme.secondaryText }]}>
-                I need an expert business consultant to help me develop my new project and advise me to grow my market audien...
-            </Text>
+            <View>
+                <Text style={[styles.serviceTitle, { color: theme.text }]}>Business Consulting</Text>
+                <Text style={[styles.serviceDescription, { color: theme.secondaryText }]}>
+                    I need an expert business consultant to help me develop my new project and advise me to grow my market audien...
+                </Text>
+            </View>
             <TouchableOpacity style={styles.applyButton}>
                 <Text style={[styles.applyButtonText, { color: theme.button }]}>Apply</Text>
             </TouchableOpacity>
@@ -24,6 +26,7 @@ const styles = StyleSheet.create({
         padding: 15,
         marginHorizontal: 10,
         borderRadius: 10,
+        alignContent: 'flex-end'
     },
     serviceTitle: {
         fontSize: 16,

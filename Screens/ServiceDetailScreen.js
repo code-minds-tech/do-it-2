@@ -35,37 +35,41 @@ const ServiceDetailScreen = ({ route, navigation }) => {
             <TouchableOpacity onPress={() => toggleFavorite(service)} style={styles.favoriteButton}>
                 <Ionicons name={isFavorite ? "heart" : "heart-outline"} size={30} color={isFavorite ? theme.primary : theme.secondaryText} />
             </TouchableOpacity>
-            <View style={[styles.card, styles.shadow, { backgroundColor: theme.cardBackground }]}>
-                <Text style={[styles.title, { color: theme.text }]}>{service.name}</Text>
-                <View style={styles.row}>
-                    <View style={styles.column}>
-                        <Text style={[styles.subtitle, { color: theme.text }]}>Service</Text>
-                        <Text style={[styles.text, { color: theme.secondaryText }]}>{service.category}</Text>
+            <View style={styles.Cont}>
+                <View>
+                    <View style={[styles.card, styles.shadow, { backgroundColor: theme.cardBackground, borderColor: theme.secondaryText }]}>
+                        <Text style={[styles.title, { color: theme.text }]}>{service.name}</Text>
+                        <View style={styles.row}>
+                            <View style={styles.column}>
+                                <Text style={[styles.subtitle, { color: theme.text }]}>Service</Text>
+                                <Text style={[styles.text, { color: theme.secondaryText }]}>{service.category}</Text>
+                            </View>
+                            <View style={styles.column}>
+                                <Text style={[styles.subtitle, { color: theme.text }]}>Type</Text>
+                                <Text style={[styles.text, { color: theme.secondaryText }]}>{service.type}</Text>
+                            </View>
+                        </View>
+                        <View style={styles.row}>
+                            <View style={styles.column}>
+                                <Text style={[styles.subtitle, { color: theme.text }]}>Placed</Text>
+                                <Text style={[styles.text, { color: theme.secondaryText }]}>{service.date}</Text>
+                            </View>
+                            <View style={styles.column}>
+                                <Text style={[styles.subtitle, { color: theme.text }]}>Location</Text>
+                                <Text style={[styles.text, { color: theme.secondaryText }]}>{service.location}</Text>
+                            </View>
+                        </View>
                     </View>
-                    <View style={styles.column}>
-                        <Text style={[styles.subtitle, { color: theme.text }]}>Type</Text>
-                        <Text style={[styles.text, { color: theme.secondaryText }]}>{service.type}</Text>
+                    <View style={[styles.card, styles.shadow, { backgroundColor: theme.cardBackground, borderColor: theme.secondaryText }]}>
+                        <Text style={[styles.subtitle, { color: theme.text }]}>Description</Text>
+                        <Text style={[styles.text, { color: theme.secondaryText }]}>{service.description}</Text>
                     </View>
                 </View>
-                <View style={styles.row}>
-                    <View style={styles.column}>
-                        <Text style={[styles.subtitle, { color: theme.text }]}>Placed</Text>
-                        <Text style={[styles.text, { color: theme.secondaryText }]}>{service.date}</Text>
-                    </View>
-                    <View style={styles.column}>
-                        <Text style={[styles.subtitle, { color: theme.text }]}>Location</Text>
-                        <Text style={[styles.text, { color: theme.secondaryText }]}>{service.location}</Text>
-                    </View>
-                </View>
+                <TouchableOpacity style={[styles.button, { backgroundColor: theme.primary }]}>
+                    <Text style={styles.buttonText}>Get in Touch</Text>
+                    <Ionicons name="arrow-forward" size={20} color="#fff" />
+                </TouchableOpacity>
             </View>
-            <View style={[styles.card, styles.shadow, { backgroundColor: theme.cardBackground }]}>
-                <Text style={[styles.subtitle, { color: theme.text }]}>Description</Text>
-                <Text style={[styles.text, { color: theme.secondaryText }]}>{service.description}</Text>
-            </View>
-            <TouchableOpacity style={[styles.button, { backgroundColor: theme.primary }]}>
-                <Text style={styles.buttonText}>Get in Touch</Text>
-                <Ionicons name="arrow-forward" size={20} color="#fff" />
-            </TouchableOpacity>
         </View>
     );
 };
@@ -101,7 +105,9 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     card: {
-        borderRadius: 10,
+        borderRadius: 12,
+        borderWidth: 1,
+
         padding: 15,
         marginBottom: 15,
     },
@@ -109,8 +115,8 @@ const styles = StyleSheet.create({
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
+        shadowRadius: 5,
+        elevation: -1, // -1 disables the shadow elevation increases it - Currently disabled due to bad opacity settings
     },
     title: {
         fontSize: 18,
@@ -139,7 +145,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 15,
         borderRadius: 25,
-        marginTop: 20,
+        marginBottom: 10
+    },
+    Cont: {
+        flex: 1,
+        justifyContent: 'space-between',
+        flexDirection: 'column'
     },
     buttonText: {
         color: '#fff',

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, FlatList, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ThemeContext from '../Context/ThemeContext';
+import { Picker } from '@react-native-picker/picker';
+import ProgressBar from '../components/ProgressBar';
 
 const providersData = [
     { id: '1', name: 'Alex Thompson', rating: 4.36, status: 'Remote', location: 'Alexandria, Egypt', description: 'Business consultants are expert guides who help companies achieve their goals.', avatar: 'https://via.placeholder.com/50' },
@@ -15,22 +17,29 @@ const TopProvidersScreen = ({ route, navigation }) => {
     const theme = React.useContext(ThemeContext);
     const { category } = route.params || {};
     const [searchText, setSearchText] = useState('');
+    const [selectedDate, setSelectedDate] = useState('');
+    const [selectedLocation, setSelectedLocation] = useState('');
+    const [selectedServiceType, setSelectedServiceType] = useState('');
 
     const renderItem = ({ item }) => (
-        <View style={styles.providerItem}>
+        <View style={[styles.providerItem, { borderColor: theme.secondaryText }]}>
             <Image source={{ uri: item.avatar }} style={styles.avatar} />
             <View style={styles.providerContent}>
-                <Text style={[styles.providerName, { color: theme.text }]}>{item.name}</Text>
-                <Text style={[styles.providerDescription, { color: theme.secondaryText }]}>{item.description}</Text>
                 <View style={styles.providerMeta}>
+                    <Text style={[styles.providerName, { color: theme.text }]}>{item.name}</Text>
                     <View style={styles.rating}>
                         <Ionicons name="star" size={16} color="#FFD700" />
                         <Text style={[styles.ratingText, { color: theme.text }]}>{item.rating}/5</Text>
                     </View>
-                    <Text style={[styles.status, { color: item.status === 'Remote' ? 'green' : item.status === 'Offline' ? 'red' : 'orange' }]}>{item.status}</Text>
+                    <Text style={[styles.status, { color: item.status === 'Remote' ? '#68CDA3' : item.status === 'Hybrid' ? '#F99C5E' : item.status === 'On Site' ? '#2EC8FE' : 'orange' }]}>{item.status}</Text>
                 </View>
-                <Text style={[styles.location, { color: theme.secondaryText }]}>{item.location}</Text>
-                <Text style={[styles.price, { color: theme.primary }]}>120</Text>
+                <Text style={[styles.providerDescription, { color: theme.secondaryText }]}>{item.description}</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'baseline', }}>
+                    <Ionicons name="location" size={12} color={theme.primary} />
+                    <Text style={[styles.location, { color: theme.secondaryText, paddingHorizontal: 5 }]}>{item.location}</Text>
+
+                </View>
+                <ProgressBar progress={33} />
             </View>
         </View>
     );
@@ -40,30 +49,59 @@ const TopProvidersScreen = ({ route, navigation }) => {
             <View style={[styles.header, { backgroundColor: theme.card }]}>
                 <Ionicons name="arrow-back" size={25} color={theme.text} onPress={() => navigation.goBack()} />
                 <Text style={[styles.headerText, { color: theme.text }]}>Business, Finance</Text>
+                <View style={styles.headerContent}>
+                    <Ionicons name="chatbubble-ellipses" size={24} color={theme.button} />
+                    <Ionicons name="notifications" size={24} color={theme.button} />
+                </View>
             </View>
-            <View style={[styles.searchContainer, { backgroundColor: theme.card }]}>
-                <Ionicons name="search" size={20} color={theme.text} style={styles.searchIcon} />
+            <View style={[styles.searchContainer, { backgroundColor: theme.background, borderColor: theme.secondaryText }]}>
+                <Ionicons name="search" size={20} color={theme.primary} style={styles.searchIcon} />
                 <TextInput
-                    style={[styles.searchInput, { color: theme.text }]}
+                    style={[styles.searchInput, { color: theme.primary }]}
                     placeholder="Search"
-                    placeholderTextColor={theme.secondaryText}
+                    placeholderTextColor={theme.primary}
                     value={searchText}
                     onChangeText={setSearchText}
                 />
             </View>
+            <View style={styles.ddCont}>
+                <View style={styles.dropdownContainer}>
+                    <Picker
+                        selectedValue={selectedDate}
+                        style={styles.picker}
+                        onValueChange={(itemValue, itemIndex) => setSelectedDate(itemValue)}
+                    >
+                        <Picker.Item label="Date" value="" style={{ color: theme.primary }} />
+
+                    </Picker>
+                </View>
+                <View style={styles.dropdownContainer}>
+                    <Picker
+                        selectedValue={selectedLocation}
+                        style={styles.picker}
+                        onValueChange={(itemValue, itemIndex) => setSelectedLocation(itemValue)}
+                    >
+                        <Picker.Item label="Location" value="" style={{ color: theme.primary }} />
+
+                    </Picker>
+                </View>
+                <View style={styles.dropdownContainer}>
+                    <Picker
+                        selectedValue={selectedServiceType}
+                        style={styles.picker}
+                        onValueChange={(itemValue, itemIndex) => setSelectedServiceType(itemValue)}
+                    >
+                        <Picker.Item label="Service Type" value="" style={{ color: theme.primary }} />
+
+                    </Picker>
+                </View>
+            </View>
             <View style={styles.filtersContainer}>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filterContainer}>
-                    {['Sort By', 'Location', 'Service Type'].map((filter) => (
-                        <TouchableOpacity key={filter} style={styles.filterButton}>
-                            <Text style={styles.filterText}>{filter} ▼</Text>
-                        </TouchableOpacity>
-                    ))}
-                </ScrollView>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.tagContainer}>
                     {['Near by', 'Interaction', 'Hybrid', 'Alexandria Egypt', 'Rating high - low'].map((tag) => (
-                        <View key={tag} style={styles.tag}>
-                            <Text style={styles.tagText}>{tag}</Text>
-                            <Ionicons name="close" size={16} color="#FFF" />
+                        <View key={tag} style={[styles.tag, { backgroundColor: theme.primary }]}>
+                            <Text style={[styles.tagText, { color: theme.buttonText }]}>{tag}</Text>
+                            <Ionicons name="close" size={16} color={theme.buttonText} />
                         </View>
                     ))}
                 </ScrollView>
@@ -87,6 +125,10 @@ const styles = StyleSheet.create({
         padding: 15,
         borderBottomWidth: 1,
         borderBottomColor: '#EEE',
+        justifyContent: 'space-between'
+    },
+    headerContent: {
+        flexDirection: 'row',
     },
     headerText: {
         fontSize: 18,
@@ -100,6 +142,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         borderRadius: 10,
         marginVertical: 10,
+        borderWidth: 1,
+
     },
     searchIcon: {
         marginRight: 10,
@@ -147,8 +191,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 15,
-        borderBottomWidth: 1,
-        borderBottomColor: '#EEE',
+        borderBottomWidth: 0.15,
+        borderBottomStartRadius: 40,
+        borderBottomEndRadius: 40,
     },
     avatar: {
         width: 50,
@@ -191,6 +236,20 @@ const styles = StyleSheet.create({
         marginTop: 5,
         fontSize: 16,
         fontWeight: 'bold',
+    },
+    ddCont: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        padding: 10,
+    },
+    dropdownContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        padding: 5,
+    },
+    picker: {
+        width: '70%',
+        color: '#2EC8FE'
     },
 });
 

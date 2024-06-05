@@ -28,7 +28,7 @@ const ServiceDetailScreen = ({ route, navigation }) => {
                 <Ionicons name="arrow-back" size={24} color={theme.text} onPress={() => navigation.goBack()} />
                 <Text style={[styles.headerTitle, { color: theme.text }]}>Requested Service</Text>
                 <View style={styles.rightButtons}>
-                    <Ionicons name="chatbubble-outline" size={24} color={theme.text} style={styles.rightButtonIcon} />
+                    <Ionicons name="chatbubble-ellipses" size={24} color={theme.text} style={styles.rightButtonIcon} />
                     <Ionicons name="notifications-outline" size={24} color={theme.text} style={styles.rightButtonIcon} />
                 </View>
             </View>

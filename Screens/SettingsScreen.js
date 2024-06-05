@@ -20,17 +20,16 @@ const SettingsScreen = ({ navigation }) => {
 
     return (
         <ScrollView style={[styles.container, { backgroundColor: theme.background }]}>
-            <View style={styles.header}>
+            <View style={[styles.header, { borderBottomColor: theme.secondaryText }]}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Ionicons name="arrow-back" size={24} color={theme.text} />
                 </TouchableOpacity>
                 <Text style={[styles.headerTitle, { color: theme.text }]}>General Settings</Text>
             </View>
-            <TouchableOpacity style={styles.settingItem}>
+            <TouchableOpacity style={[styles.settingItem, { borderBottomColor: theme.secondaryText }]}>
                 <Text style={[styles.settingText, { color: theme.text }]}>Language</Text>
-                <Ionicons name="chevron-forward" size={24} color={theme.secondaryText} />
             </TouchableOpacity>
-            <View style={styles.settingItem}>
+            <View style={[styles.settingItem, { borderBottomColor: theme.secondaryText }]}>
                 <Text style={[styles.settingText, { color: theme.text }]}>Dark Mode</Text>
                 <Switch
                     value={isDarkMode}
@@ -39,7 +38,7 @@ const SettingsScreen = ({ navigation }) => {
                     thumbColor={isDarkMode ? theme.primary : '#f4f3f4'}
                 />
             </View>
-            <View style={styles.settingItem}>
+            <View style={[styles.settingItem, { borderBottomColor: theme.secondaryText }]}>
                 <Text style={[styles.settingText, { color: theme.text }]}>Notification</Text>
                 <Switch
                     value={isNotificationEnabled}
@@ -48,29 +47,29 @@ const SettingsScreen = ({ navigation }) => {
                     thumbColor={isNotificationEnabled ? theme.primary : '#f4f3f4'}
                 />
             </View>
-            <TouchableOpacity style={styles.settingItem}>
+            <TouchableOpacity style={[styles.settingItem, { borderBottomColor: theme.secondaryText }]}>
                 <Text style={[styles.settingText, { color: theme.text }]}>Block List</Text>
-                <Ionicons name="chevron-forward" size={24} color={theme.secondaryText} />
+
             </TouchableOpacity>
-            <TouchableOpacity style={styles.settingItem}>
+            <TouchableOpacity style={[styles.settingItem, { borderBottomColor: theme.secondaryText }]}>
                 <Text style={[styles.settingText, { color: theme.text }]}>Change Password</Text>
-                <Ionicons name="chevron-forward" size={24} color={theme.secondaryText} />
+
             </TouchableOpacity>
-            <TouchableOpacity style={styles.settingItem} onPress={() => navigation.navigate('TermsAndConditionsScreen')}>
+            <TouchableOpacity style={[styles.settingItem, { borderBottomColor: theme.secondaryText }]} onPress={() => navigation.navigate('TermsAndConditionsScreen')}>
                 <Text style={[styles.settingText, { color: theme.text }]}>Terms & Conditions</Text>
-                <Ionicons name="chevron-forward" size={24} color={theme.secondaryText} />
+
             </TouchableOpacity>
-            <TouchableOpacity style={styles.settingItem}>
+            <TouchableOpacity style={[styles.settingItem, { borderBottomColor: theme.secondaryText }]}>
                 <Text style={[styles.settingText, { color: theme.text }]}>Switch To Company Profile</Text>
-                <Ionicons name="chevron-forward" size={24} color={theme.secondaryText} />
+
             </TouchableOpacity>
-            <TouchableOpacity style={styles.settingItem} onPress={() => navigation.navigate('About')}>
+            <TouchableOpacity style={[styles.settingItem, { borderBottomColor: theme.secondaryText }]} onPress={() => navigation.navigate('About')}>
                 <Text style={[styles.settingText, { color: theme.text }]}>About Us</Text>
-                <Ionicons name="chevron-forward" size={24} color={theme.secondaryText} />
+
             </TouchableOpacity>
-            <TouchableOpacity style={styles.settingItem}>
+            <TouchableOpacity style={[styles.settingItem, { borderBottomColor: theme.secondaryText }]}>
                 <Text style={[styles.settingText, { color: theme.text }]}>Delete Account</Text>
-                <Ionicons name="chevron-forward" size={24} color={theme.secondaryText} />
+
             </TouchableOpacity>
             <TouchableOpacity style={styles.signOutButton} onPress={handleSignOut}>
                 <Ionicons name="log-out-outline" size={24} color="red" />
@@ -89,7 +88,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 16,
         borderBottomWidth: 1,
-        borderBottomColor: '#ddd',
     },
     headerTitle: {
         fontSize: 20,
@@ -102,7 +100,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         padding: 16,
         borderBottomWidth: 1,
-        borderBottomColor: '#ddd',
     },
     settingText: {
         fontSize: 16,
@@ -112,9 +109,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding: 16,
-        marginTop: 20,
-        borderTopWidth: 1,
-        borderTopColor: '#ddd',
+        marginTop: 10,
     },
     signOutText: {
         fontSize: 16,

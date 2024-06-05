@@ -34,16 +34,16 @@ const MessagesScreen = ({ navigation }) => {
             <View style={[styles.header, { backgroundColor: theme.card }]}>
                 <Image source={{ uri: 'https://via.placeholder.com/50' }} style={styles.logo} />
                 <View style={styles.headerIcons}>
-                    <Ionicons name="search" size={25} color={theme.text} />
-                    <Ionicons name="notifications-outline" size={25} color={theme.text} style={styles.icon} />
+                    <Ionicons name="search" size={25} color={theme.primary} />
+                    <Ionicons name="notifications-outline" size={25} color={theme.primary} style={styles.icon} />
                 </View>
             </View>
-            <View style={[styles.searchContainer, { backgroundColor: theme.card }]}>
-                <Ionicons name="search" size={20} color={theme.text} style={styles.searchIcon} />
+            <View style={[styles.searchContainer, { backgroundColor: theme.background, borderColor: theme.secondaryText }]}>
+                <Ionicons name="search" size={20} color={theme.primary} style={styles.searchIcon} />
                 <TextInput
-                    style={[styles.searchInput, { color: theme.text }]}
+                    style={[styles.searchInput, { color: theme.primary }]}
                     placeholder="Search"
-                    placeholderTextColor={theme.secondaryText}
+                    placeholderTextColor={theme.primary}
                 />
             </View>
             <FlatList
@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         borderRadius: 10,
         marginVertical: 10,
+        borderWidth: 1
     },
     searchIcon: {
         marginRight: 10,

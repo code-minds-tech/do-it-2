@@ -10,6 +10,12 @@ const ProviderCard = ({ name, profession }) => {
             <Image source={{ uri: 'https://via.placeholder.com/50' }} style={styles.providerPic} />
             <Text style={[styles.providerName, { color: theme.text }]}>{name}</Text>
             <Text style={[styles.providerProfession, { color: theme.secondaryText }]}>{profession}</Text>
+            <View
+                style={{
+                    borderBottomColor: 'black',
+                    borderBottomWidth: StyleSheet.hairlineWidth,
+                }}
+            />
         </View>
     );
 };

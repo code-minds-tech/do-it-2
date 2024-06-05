@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import ThemeContext from '../Context/ThemeContext';
 import EditAboutModal from '../Modal/EditAboutModal';
 import ProfileServiceItem from '../components/ProfileServiceItem';
+import ProgressBar from '../components/ProgressBar';
 
 const ProfileScreen = ({ navigation }) => {
     const theme = React.useContext(ThemeContext);
@@ -38,7 +39,7 @@ const ProfileScreen = ({ navigation }) => {
         switch (activeTab) {
             case 'About':
                 return (
-                    <View style={[styles.aboutContainer, { backgroundColor: theme.cardBackground }]}>
+                    <View style={[styles.aboutContainer, { backgroundColor: theme.background, borderColor: theme.secondaryText }]}>
                         <Text style={[styles.aboutTitle, { color: theme.text }]}>About</Text>
                         <Text style={[styles.aboutText, { color: theme.secondaryText }]}>{aboutText}</Text>
                         <TouchableOpacity style={styles.editButton} onPress={() => setEditModalVisible(true)}>
@@ -91,14 +92,17 @@ const ProfileScreen = ({ navigation }) => {
                 <Text style={[styles.profileRating, { color: theme.primary }]}>4.36/5 (36)</Text>
             </View>
             <View style={styles.profileStrengthContainer}>
-                <Text style={[styles.profileStrengthText, { color: theme.text }]}>Profile Strength</Text>
-                <View style={styles.profileStrengthBar}>
-                    <View style={[styles.profileStrengthProgress, { width: '33%' }]} />
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <Text style={[styles.profileStrengthText, { color: theme.text }]}>Profile Strength</Text>
+                    <Text style={[styles.profileStrengthPercentage, { color: theme.text }]}>33%</Text>
+                    <ProgressBar progress={33} />
                 </View>
-                <Text style={[styles.profileStrengthPercentage, { color: theme.text }]}>33%</Text>
-                <Text style={[styles.profileStrengthDescription, { color: theme.primary }]}>
-                    Complete Your Profile Info To Get a Strong Profile
-                </Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <Ionicons name="shield-checkmark" size={20} color={theme.primary} style={{ paddingHorizontal: 5 }} />
+                    <Text style={[styles.profileStrengthDescription, { color: theme.primary }]}>
+                        Complete Your Profile Info To Get a Strong Profile
+                    </Text>
+                </View>
             </View>
             <View style={styles.tabContainer}>
                 <TouchableOpacity style={styles.tab} onPress={() => setActiveTab('About')}>
@@ -184,7 +188,6 @@ const styles = StyleSheet.create({
     profileStrengthProgress: {
         height: 10,
         borderRadius: 5,
-        backgroundColor: '#4caf50',
     },
     profileStrengthPercentage: {
         fontSize: 16,
@@ -211,6 +214,9 @@ const styles = StyleSheet.create({
         padding: 20,
         margin: 20,
         borderRadius: 10,
+        borderWidth: 1,
+        borderRadius: 15,
+
     },
     aboutTitle: {
         fontSize: 18,
@@ -228,7 +234,8 @@ const styles = StyleSheet.create({
     addServiceButton: {
         flexDirection: 'row',
         alignItems: 'center',
-        margin: 20,
+        margin: 15,
+        justifyContent: 'center'
     },
     addServiceText: {
         marginLeft: 10,

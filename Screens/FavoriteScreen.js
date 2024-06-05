@@ -4,12 +4,17 @@ import { Ionicons } from '@expo/vector-icons';
 import ThemeContext from '../Context/ThemeContext';
 import RequestedServiceItem from '../components/RequestedServiceItem';
 import { useFavorites } from '../Context/FavoriteContext';
+import { Picker } from '@react-native-picker/picker';
 
 const FavoriteServicesScreen = ({ navigation }) => {
     const theme = React.useContext(ThemeContext);
     const { favorites } = useFavorites();
     const [search, setSearch] = useState('');
     const [sortBy, setSortBy] = useState('Location');
+    const [selectedDate, setSelectedDate] = useState('');
+    const [selectedLocation, setSelectedLocation] = useState('');
+    const [selectedServiceType, setSelectedServiceType] = useState('');
+
 
     const renderItem = ({ item }) => (
         <RequestedServiceItem
@@ -33,14 +38,37 @@ const FavoriteServicesScreen = ({ navigation }) => {
                     onChangeText={setSearch}
                 />
             </View>
-            <View style={styles.sortBar}>
-                <Text style={[styles.sortText, { color: theme.text }]}>Sort By</Text>
-                <TouchableOpacity onPress={() => setSortBy('Location')} style={styles.sortButton}>
-                    <Text style={[styles.sortButtonText, { color: theme.text }]}>Location</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => setSortBy('Service Type')} style={styles.sortButton}>
-                    <Text style={[styles.sortButtonText, { color: theme.text }]}>Service Type</Text>
-                </TouchableOpacity>
+            <View style={styles.ddCont}>
+                <View style={styles.dropdownContainer}>
+                    <Picker
+                        selectedValue={selectedDate}
+                        style={styles.picker}
+                        onValueChange={(itemValue, itemIndex) => setSelectedDate(itemValue)}
+                    >
+                        <Picker.Item label="Date" value="" style={{ color: theme.primary }} />
+
+                    </Picker>
+                </View>
+                <View style={styles.dropdownContainer}>
+                    <Picker
+                        selectedValue={selectedLocation}
+                        style={styles.picker}
+                        onValueChange={(itemValue, itemIndex) => setSelectedLocation(itemValue)}
+                    >
+                        <Picker.Item label="Location" value="" style={{ color: theme.primary }} />
+
+                    </Picker>
+                </View>
+                <View style={styles.dropdownContainer}>
+                    <Picker
+                        selectedValue={selectedServiceType}
+                        style={styles.picker}
+                        onValueChange={(itemValue, itemIndex) => setSelectedServiceType(itemValue)}
+                    >
+                        <Picker.Item label="Service Type" value="" style={{ color: theme.primary }} />
+
+                    </Picker>
+                </View>
             </View>
             <FlatList
                 data={favorites}
@@ -140,6 +168,20 @@ const styles = StyleSheet.create({
     servicePrice: {
         fontSize: 12,
         color: 'gray',
+    },
+    ddCont: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        padding: 10,
+    },
+    dropdownContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        padding: 5,
+    },
+    picker: {
+        width: '70%',
+        color: '#2EC8FE'
     },
 });
 

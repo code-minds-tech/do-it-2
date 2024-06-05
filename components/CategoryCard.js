@@ -11,9 +11,9 @@ const CategoryCard = ({ category, onPress, expanded, navigation }) => {
     };
 
     return (
-        <View style={[styles.card, { backgroundColor: theme.card }]}>
+        <View style={[styles.card, { backgroundColor: theme.iconCard }]}>
             <TouchableOpacity onPress={onPress} style={styles.cardHeader}>
-                <View style={styles.cardIcon}>
+                <View style={[styles.cardIcon, { backgroundColor: theme.background }]}>
                     <Ionicons name="stats-chart" size={30} color={theme.primary} />
                 </View>
                 <View style={styles.cardContent}>
@@ -40,8 +40,7 @@ const styles = StyleSheet.create({
         margin: 10,
         borderRadius: 10,
         overflow: 'hidden',
-        borderWidth: 1,
-        borderColor: '#EEE',
+
     },
     cardHeader: {
         flexDirection: 'row',
@@ -50,6 +49,9 @@ const styles = StyleSheet.create({
     },
     cardIcon: {
         marginRight: 15,
+        alignItems: 'center',
+        padding: 10,
+        borderRadius: 10,
     },
     cardContent: {
         flex: 1,

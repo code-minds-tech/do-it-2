@@ -9,14 +9,14 @@ const MessageCard = ({ message, onDelete, onPress }) => {
 
     const renderRightActions = () => (
         <TouchableOpacity style={styles.deleteButton} onPress={onDelete}>
-            <Ionicons name="trash-outline" size={30} color="#fff" />
+            <Ionicons name="trash-outline" size={30} color="#FFFFFF" />
             <Text style={styles.deleteText}>Delete Chat</Text>
         </TouchableOpacity>
     );
 
     return (
         <Swipeable renderRightActions={renderRightActions}>
-            <TouchableOpacity onPress={onPress} style={styles.messageItem}>
+            <TouchableOpacity onPress={onPress} style={[styles.messageItem, { borderBottomColor: theme.secondaryText }]}>
                 <Image source={{ uri: message.avatar }} style={styles.avatar} />
                 <View style={styles.messageContent}>
                     <Text style={[styles.name, { color: theme.text }]}>{message.name}</Text>
@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 15,
-        borderBottomWidth: 1,
-        borderBottomColor: '#EEE',
+        borderBottomWidth: 0.2,
+        alignItems: 'stretch'
     },
     avatar: {
         width: 50,
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         marginTop: 5,
     },
     deleteButton: {
-        backgroundColor: 'red',
+        backgroundColor: '#FF666E',
         justifyContent: 'center',
         alignItems: 'center',
         width: 100,

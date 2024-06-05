@@ -45,13 +45,17 @@ const CategoriesScreen = ({ navigation }) => {
             <View style={[styles.header, { backgroundColor: theme.card }]}>
                 <Ionicons name="arrow-back" size={25} color={theme.text} onPress={() => navigation.goBack()} />
                 <Text style={[styles.headerText, { color: theme.text }]}>Categories</Text>
+                <View style={styles.rightButtons}>
+                    <Ionicons name="chatbubble-ellipses" size={24} color={theme.primary} style={styles.rightButtonIcon} />
+                    <Ionicons name="notifications-outline" size={24} color={theme.primary} style={styles.rightButtonIcon} />
+                </View>
             </View>
-            <View style={[styles.searchContainer, { backgroundColor: theme.card }]}>
-                <Ionicons name="search" size={20} color={theme.text} style={styles.searchIcon} />
+            <View style={[styles.searchContainer, { backgroundColor: theme.background, borderColor: theme.secondaryText }]}>
+                <Ionicons name="search" size={20} color={theme.primary} style={styles.searchIcon} />
                 <TextInput
-                    style={[styles.searchInput, { color: theme.text }]}
+                    style={[styles.searchInput, { color: theme.primary }]}
                     placeholder="Search"
-                    placeholderTextColor={theme.secondaryText}
+                    placeholderTextColor={theme.primary}
                     value={searchText}
                     onChangeText={setSearchText}
                 />
@@ -78,10 +82,17 @@ const styles = StyleSheet.create({
     },
     header: {
         flexDirection: 'row',
+        justifyContent: 'space-between',
         alignItems: 'center',
         padding: 15,
         borderBottomWidth: 1,
         borderBottomColor: '#EEE',
+    },
+    rightButtons: {
+        flexDirection: 'row',
+    },
+    rightButtonIcon: {
+        marginLeft: 15,
     },
     headerText: {
         fontSize: 18,
@@ -95,6 +106,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         borderRadius: 10,
         marginVertical: 10,
+        borderWidth: 1,
     },
     searchIcon: {
         marginRight: 10,

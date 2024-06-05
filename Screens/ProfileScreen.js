@@ -95,8 +95,9 @@ const ProfileScreen = ({ navigation }) => {
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Text style={[styles.profileStrengthText, { color: theme.text }]}>Profile Strength</Text>
                     <Text style={[styles.profileStrengthPercentage, { color: theme.text }]}>33%</Text>
-                    <ProgressBar progress={33} />
+
                 </View>
+                <ProgressBar progress={33} />
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Ionicons name="shield-checkmark" size={20} color={theme.primary} style={{ paddingHorizontal: 5 }} />
                     <Text style={[styles.profileStrengthDescription, { color: theme.primary }]}>

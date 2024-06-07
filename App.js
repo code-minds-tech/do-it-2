@@ -21,6 +21,20 @@ import LoginScreen from './Screens/Login';
 import SignupScreen from './Screens/SignUp';
 import CreatePasswordScreen from './Screens/CreatePasswordScreen';
 import { AuthProvider, useAuth } from './Context/AuthContext';
+import FeedbackModal from './Modal/FeedbackModal';
+import FeedbackModal2 from './Modal/FeedbackModal2';
+import AddServiceScreen from './Screens/AddServiceScreen';
+import EditServiceScreen from './Screens/EditServiceScreen';
+import ProfileServiceDetailsScreen from './Screens/ProfileServiceDetialScreen';
+import ProfileScreen from './Screens/ProfileScreen';
+import EditExperienceModal from './Modal/EditExperienceModal';
+import SettingsScreen from './Screens/SettingsScreen';
+import About from './Screens/About';
+import TermsAndConditionsScreen from './Screens/TermsAndCond';
+import BlockListScreen from './Screens/BlockedListScreen';
+import ChangePasswordScreen from './Screens/ChangePasswordScreen';
+import VerifyAccountScreen from './Screens/VerifyAccountScreen';
+import CompleteProfileScreen from './Screens/CompleteProfileScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -111,7 +125,7 @@ const App = () => {
           <GestureHandlerRootView style={{ flex: 1 }}>
             <SafeAreaProvider>
               <NavigationContainer>
-                <AuthWrapper />
+                <CompleteProfileScreen />
               </NavigationContainer>
             </SafeAreaProvider>
           </GestureHandlerRootView>
